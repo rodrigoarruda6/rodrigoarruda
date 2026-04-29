@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigo Arruda | Matemática</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <!-- MathJax for LaTeX integration -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -237,7 +238,7 @@
 
     <header>
         <h1 id="site-title">Rodrigo Arruda</h1>
-        <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">EN</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang"><span class="flag-icon flag-icon-us"></span> EN</button>
     </header>
 
     <nav>
@@ -274,9 +275,21 @@
         <section id="research" class="section">
             <h2 id="research-title">Pesquisa e Publicações</h2>
 
-            <h3 id="research-sub1">Trabalhos e Colaborações</h3>
+            <h3 id="research-sub1">Publicados</h3>
             <ul class="pub-list">
-                <li id="research-li1"><em>(Em construção...)</em></li>
+                <li id="research-pub1"><a href="https://www.aimsciences.org/article/doi/10.3934/dcds.2023125"
+                        target="_blank">Continuum-wise hyperbolic homeomorphisms on surfaces</a> (com A. Sarmiento e B.
+                    Carvalho)</li>
+            </ul>
+
+            <h3 id="research-sub2">Pre prints</h3>
+            <ul class="pub-list">
+                <li id="research-prep1"><em>(Em construção...)</em></li>
+            </ul>
+
+            <h3 id="research-sub3">Visitas técnicas</h3>
+            <ul class="pub-list">
+                <li id="research-visit1"><em>(Em construção...)</em></li>
             </ul>
         </section>
 
@@ -340,7 +353,7 @@
         // Translation Data
         const translations = {
             pt: {
-                langBtn: "EN",
+                langBtn: "<span class='flag-icon flag-icon-us'></span> EN",
                 siteTitle: "Rodrigo Arruda",
                 navHome: "Sobre Mim",
                 navTeaching: "Ensino",
@@ -354,8 +367,12 @@
                 teachingP1: "Bem-vindo à minha página de ensino. Aqui você encontrará informações sobre as disciplinas em que atuo, notas de aula e materiais de apoio.",
                 teachingP2: "<em>(Em construção...)</em>",
                 researchTitle: "Pesquisa e Publicações",
-                researchSub1: "Trabalhos e Colaborações",
-                researchLi1: "<em>(Em construção...)</em>",
+                researchSub1: "Publicados",
+                researchPub1: "<a href='https://www.aimsciences.org/article/doi/10.3934/dcds.2023125' target='_blank'>Continuum-wise hyperbolic homeomorphisms on surfaces</a> (com A. Sarmiento e B. Carvalho)",
+                researchSub2: "Pre prints",
+                researchPrep1: "<em>(Em construção...)</em>",
+                researchSub3: "Visitas técnicas",
+                researchVisit1: "<em>(Em construção...)</em>",
                 curiositiesTitle: "Curiosidades Matemáticas",
                 curiositiesP1: "Um espaço para compartilhar ideias interessantes, teoremas elegantes e fatos curiosos que chamam minha atenção.",
                 curiosityCard1Text: "<em>(Em construção...)</em>",
@@ -368,7 +385,7 @@
                 seminar2Abstract: "<em>(Em construção...)</em>"
             },
             en: {
-                langBtn: "PT",
+                langBtn: "<span class='flag-icon flag-icon-br'></span> PT",
                 siteTitle: "Rodrigo Arruda",
                 navHome: "About Me",
                 navTeaching: "Teaching",
@@ -382,8 +399,12 @@
                 teachingP1: "Welcome to my teaching page. Here you will find information about the courses I am involved in, lecture notes, and study materials.",
                 teachingP2: "<em>(Under construction...)</em>",
                 researchTitle: "Research & Publications",
-                researchSub1: "Works and Collaborations",
-                researchLi1: "<em>(Under construction...)</em>",
+                researchSub1: "Published",
+                researchPub1: "<a href='https://www.aimsciences.org/article/doi/10.3934/dcds.2023125' target='_blank'>Continuum-wise hyperbolic homeomorphisms on surfaces</a> (with A. Sarmiento and B. Carvalho)",
+                researchSub2: "Preprints",
+                researchPrep1: "<em>(Under construction...)</em>",
+                researchSub3: "Technical visits",
+                researchVisit1: "<em>(Under construction...)</em>",
                 curiositiesTitle: "Mathematical Curiosities",
                 curiositiesP1: "A space to share interesting ideas, elegant theorems, and curious facts that catch my eye.",
                 curiosityCard1Text: "<em>(Under construction...)</em>",
@@ -407,7 +428,7 @@
         function applyTranslations(lang) {
             const t = translations[lang];
 
-            document.getElementById('btn-lang').innerText = t.langBtn;
+            document.getElementById('btn-lang').innerHTML = t.langBtn;
             document.getElementById('site-title').innerText = t.siteTitle;
 
             document.getElementById('nav-home').innerText = t.navHome;
@@ -426,7 +447,11 @@
 
             document.getElementById('research-title').innerText = t.researchTitle;
             document.getElementById('research-sub1').innerText = t.researchSub1;
-            document.getElementById('research-li1').innerHTML = t.researchLi1;
+            document.getElementById('research-pub1').innerHTML = t.researchPub1;
+            document.getElementById('research-sub2').innerText = t.researchSub2;
+            document.getElementById('research-prep1').innerHTML = t.researchPrep1;
+            document.getElementById('research-sub3').innerText = t.researchSub3;
+            document.getElementById('research-visit1').innerHTML = t.researchVisit1;
 
             document.getElementById('curiosities-title').innerText = t.curiositiesTitle;
             document.getElementById('curiosities-p1').innerText = t.curiositiesP1;
