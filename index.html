@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Arruda | Matemática</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --light-bg: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .lang-toggle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background-color: var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav button,
+        nav a.tab-link {
+            background: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        nav button:hover,
+        nav a.tab-link:hover {
+            background-color: var(--light-bg);
+            border-color: #ddd;
+        }
+
+        nav button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .profile-container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            border: 3px solid #eee;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .curiosity-card {
+            border-left: 4px solid var(--accent-color);
+            background: var(--light-bg);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        ul.pub-list {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        ul.pub-list li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 26px;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="site-title">Rodrigo Arruda</h1>
+        <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang">EN</button>
+    </header>
+
+    <nav>
+        <button class="tab-btn active" onclick="showSection('home')" id="nav-home">Sobre Mim</button>
+        <button class="tab-btn" onclick="showSection('teaching')" id="nav-teaching">Ensino</button>
+        <button class="tab-btn" onclick="showSection('research')" id="nav-research">Pesquisa e Publicações</button>
+        <button class="tab-btn" onclick="showSection('curiosities')" id="nav-curiosities">Curiosidades</button>
+        <a href="http://lattes.cnpq.br/7652859735042511" target="_blank" class="tab-link">Lattes <i
+                class="fas fa-external-link-alt" style="font-size: 12px; margin-left: 5px;"></i></a>
+    </nav>
+
+    <main>
+        <section id="home" class="section active">
+            <h2 id="home-title">Sobre Mim</h2>
+            <div class="profile-container">
+                <img src="minha-foto.jpg" alt="[Foto]" class="profile-photo" id="profile-img">
+                <div>
+                    <p id="home-p1">Olá! Sou Rodrigo Arruda, pesquisador e doutorando no Departamento de Matemática Pura
+                        da Universidade Federal de Minas Gerais (UFMG), sob a orientação de Pablo Daniel Carrasco.</p>
+                    <p id="home-p2">Meus principais interesses em matemática concentram-se em Sistemas Dinâmicos e
+                        Teoria Ergódica.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching" class="section">
+            <h2 id="teaching-title">Ensino</h2>
+            <p id="teaching-p1">Bem-vindo à minha página de ensino. Aqui você encontrará informações sobre as
+                disciplinas em que atuo, notas de aula e materiais de apoio.</p>
+            <p id="teaching-p2"><em>(Em construção...)</em></p>
+        </section>
+
+        <section id="research" class="section">
+            <h2 id="research-title">Pesquisa e Publicações</h2>
+
+            <h3 id="research-sub1">Trabalhos e Colaborações</h3>
+            <ul class="pub-list">
+                <li id="research-li1"><em>(Em construção...)</em></li>
+            </ul>
+        </section>
+
+        <section id="curiosities" class="section">
+            <h2 id="curiosities-title">Curiosidades Matemáticas</h2>
+            <p id="curiosities-p1">Um espaço para compartilhar ideias interessantes, teoremas elegantes e fatos curiosos
+                que chamam minha atenção.</p>
+
+            <div class="curiosity-card">
+                <p style="margin-bottom: 0;" id="curiosity-card1-text"><em>(Em construção...)</em></p>
+            </div>
+            <div class="curiosity-card">
+                <p style="margin-bottom: 0;" id="curiosity-card2-text"><em>(Em construção...)</em></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://orcid.org/0009-0005-2614-9465" target="_blank" title="ORCID">
+                <i class="fab fa-orcid"></i>
+            </a>
+            <a href="https://www.researchgate.net/profile/Rodrigo-Arruda-9?ev=hdr_xprf" target="_blank"
+                title="ResearchGate">
+                <i class="fab fa-researchgate"></i>
+            </a>
+            <a href="https://www.instagram.com/rodrigoarruda6" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('nav-' + sectionId).classList.add('active');
+        }
+
+        // Translation Data
+        const translations = {
+            pt: {
+                langBtn: "EN",
+                siteTitle: "Rodrigo Arruda",
+                navHome: "Sobre Mim",
+                navTeaching: "Ensino",
+                navResearch: "Pesquisa e Publicações",
+                navCuriosities: "Curiosidades",
+                homeTitle: "Sobre Mim",
+                homeP1: "Olá! Sou Rodrigo Arruda, pesquisador e doutorando no Departamento de Matemática Pura da Universidade Federal de Minas Gerais (UFMG), sob a orientação de Pablo Daniel Carrasco.",
+                homeP2: "Meus principais interesses em matemática concentram-se em Sistemas Dinâmicos e Teoria Ergódica.",
+                teachingTitle: "Ensino",
+                teachingP1: "Bem-vindo à minha página de ensino. Aqui você encontrará informações sobre as disciplinas em que atuo, notas de aula e materiais de apoio.",
+                teachingP2: "<em>(Em construção...)</em>",
+                researchTitle: "Pesquisa e Publicações",
+                researchSub1: "Trabalhos e Colaborações",
+                researchLi1: "<em>(Em construção...)</em>",
+                curiositiesTitle: "Curiosidades Matemáticas",
+                curiositiesP1: "Um espaço para compartilhar ideias interessantes, teoremas elegantes e fatos curiosos que chamam minha atenção.",
+                curiosityCard1Text: "<em>(Em construção...)</em>",
+                curiosityCard2Text: "<em>(Em construção...)</em>"
+            },
+            en: {
+                langBtn: "PT",
+                siteTitle: "Rodrigo Arruda",
+                navHome: "About Me",
+                navTeaching: "Teaching",
+                navResearch: "Research & Publications",
+                navCuriosities: "Curiosities",
+                homeTitle: "About Me",
+                homeP1: "Hi! I'm Rodrigo Arruda, a researcher and Ph.D. student at the Department of Pure Mathematics of the Federal University of Minas Gerais (UFMG), advised by Pablo Daniel Carrasco.",
+                homeP2: "My main interests in mathematics lie in Dynamical Systems and Ergodic Theory.",
+                teachingTitle: "Teaching",
+                teachingP1: "Welcome to my teaching page. Here you will find information about the courses I am involved in, lecture notes, and study materials.",
+                teachingP2: "<em>(Under construction...)</em>",
+                researchTitle: "Research & Publications",
+                researchSub1: "Works and Collaborations",
+                researchLi1: "<em>(Under construction...)</em>",
+                curiositiesTitle: "Mathematical Curiosities",
+                curiositiesP1: "A space to share interesting ideas, elegant theorems, and curious facts that catch my eye.",
+                curiosityCard1Text: "<em>(Under construction...)</em>",
+                curiosityCard2Text: "<em>(Under construction...)</em>"
+            }
+        };
+
+        let currentLang = 'pt';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            applyTranslations(currentLang);
+        }
+
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            document.getElementById('btn-lang').innerText = t.langBtn;
+            document.getElementById('site-title').innerText = t.siteTitle;
+
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('nav-teaching').innerText = t.navTeaching;
+            document.getElementById('nav-research').innerText = t.navResearch;
+            document.getElementById('nav-curiosities').innerText = t.navCuriosities;
+
+            document.getElementById('home-title').innerText = t.homeTitle;
+            document.getElementById('home-p1').innerText = t.homeP1;
+            document.getElementById('home-p2').innerText = t.homeP2;
+
+            document.getElementById('teaching-title').innerText = t.teachingTitle;
+            document.getElementById('teaching-p1').innerText = t.teachingP1;
+            document.getElementById('teaching-p2').innerHTML = t.teachingP2;
+
+            document.getElementById('research-title').innerText = t.researchTitle;
+            document.getElementById('research-sub1').innerText = t.researchSub1;
+            document.getElementById('research-li1').innerHTML = t.researchLi1;
+
+            document.getElementById('curiosities-title').innerText = t.curiositiesTitle;
+            document.getElementById('curiosities-p1').innerText = t.curiositiesP1;
+            document.getElementById('curiosity-card1-text').innerHTML = t.curiosityCard1Text;
+            document.getElementById('curiosity-card2-text').innerHTML = t.curiosityCard2Text;
+
+            // Foto placeholder alt text
+            document.getElementById('profile-img').alt = lang === 'pt' ? '[Foto]' : '[Photo]';
+        }
+
+        // Fallback de texto se a imagem falhar em carregar
+        document.getElementById('profile-img').addEventListener('error', function () {
+            this.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.className = 'profile-photo';
+            fallback.innerText = currentLang === 'pt' ? 'Sua Foto Aqui' : 'Your Photo Here';
+            this.parentNode.insertBefore(fallback, this);
+        });
+
+    </script>
+</body>
+
+</html>
