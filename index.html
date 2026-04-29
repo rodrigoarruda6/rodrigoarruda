@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigo Arruda | Matemática</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for LaTeX integration -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -180,6 +182,54 @@
                 text-align: center;
             }
         }
+
+        /* Accordion Styles */
+        .accordion {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover,
+        .accordion.active-acc {
+            background-color: #ebebeb;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            /* Unicode character for "plus" sign (+) */
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion.active-acc:after {
+            content: "\2212";
+            /* Unicode character for "minus" sign (-) */
+        }
+
+        .panel {
+            padding: 0 15px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
@@ -195,6 +245,7 @@
         <button class="tab-btn" onclick="showSection('teaching')" id="nav-teaching">Ensino</button>
         <button class="tab-btn" onclick="showSection('research')" id="nav-research">Pesquisa e Publicações</button>
         <button class="tab-btn" onclick="showSection('curiosities')" id="nav-curiosities">Curiosidades</button>
+        <button class="tab-btn" onclick="showSection('seminars')" id="nav-seminars">Seminários</button>
         <a href="http://lattes.cnpq.br/7652859735042511" target="_blank" class="tab-link">Lattes <i
                 class="fas fa-external-link-alt" style="font-size: 12px; margin-left: 5px;"></i></a>
     </nav>
@@ -241,9 +292,27 @@
                 <p style="margin-bottom: 0;" id="curiosity-card2-text"><em>(Em construção...)</em></p>
             </div>
         </section>
+
+        <section id="seminars" class="section">
+            <h2 id="seminars-title">Seminários</h2>
+            <p id="seminars-p1">Aqui são divulgados os seminários semanais de Sistemas Dinâmicos da UFMG.</p>
+
+            <button class="accordion" id="seminar1-title">Seminario 1 - Rodrigo</button>
+            <div class="panel">
+                <p id="seminar1-abstract" style="margin-top: 15px;"><em>(Em construção...)</em></p>
+            </div>
+
+            <button class="accordion" id="seminar2-title">Seminario 2 - Rodrigo</button>
+            <div class="panel">
+                <p id="seminar2-abstract" style="margin-top: 15px;"><em>(Em construção...)</em></p>
+            </div>
+        </section>
     </main>
 
     <footer>
+        <div style="margin-bottom: 15px; font-size: 16px; color: var(--primary-color);">
+            <i class="fas fa-envelope" style="margin-right: 8px;"></i>rodrigoarruda6@gmail.com
+        </div>
         <div class="social-icons">
             <a href="https://orcid.org/0009-0005-2614-9465" target="_blank" title="ORCID">
                 <i class="fab fa-orcid"></i>
@@ -277,6 +346,7 @@
                 navTeaching: "Ensino",
                 navResearch: "Pesquisa e Publicações",
                 navCuriosities: "Curiosidades",
+                navSeminars: "Seminários",
                 homeTitle: "Sobre Mim",
                 homeP1: "Olá! Sou Rodrigo Arruda, pesquisador e doutorando no Departamento de Matemática Pura da Universidade Federal de Minas Gerais (UFMG), sob a orientação de Pablo Daniel Carrasco.",
                 homeP2: "Meus principais interesses em matemática concentram-se em Sistemas Dinâmicos e Teoria Ergódica.",
@@ -289,7 +359,13 @@
                 curiositiesTitle: "Curiosidades Matemáticas",
                 curiositiesP1: "Um espaço para compartilhar ideias interessantes, teoremas elegantes e fatos curiosos que chamam minha atenção.",
                 curiosityCard1Text: "<em>(Em construção...)</em>",
-                curiosityCard2Text: "<em>(Em construção...)</em>"
+                curiosityCard2Text: "<em>(Em construção...)</em>",
+                seminarsTitle: "Seminários",
+                seminarsP1: "Aqui são divulgados os seminários semanais de Sistemas Dinâmicos da UFMG.",
+                seminar1Title: "Seminario 1 - Rodrigo",
+                seminar1Abstract: "<em>(Em construção...)</em>",
+                seminar2Title: "Seminario 2 - Rodrigo",
+                seminar2Abstract: "<em>(Em construção...)</em>"
             },
             en: {
                 langBtn: "PT",
@@ -298,6 +374,7 @@
                 navTeaching: "Teaching",
                 navResearch: "Research & Publications",
                 navCuriosities: "Curiosities",
+                navSeminars: "Seminars",
                 homeTitle: "About Me",
                 homeP1: "Hi! I'm Rodrigo Arruda, a researcher and Ph.D. student at the Department of Pure Mathematics of the Federal University of Minas Gerais (UFMG), advised by Pablo Daniel Carrasco.",
                 homeP2: "My main interests in mathematics lie in Dynamical Systems and Ergodic Theory.",
@@ -310,7 +387,13 @@
                 curiositiesTitle: "Mathematical Curiosities",
                 curiositiesP1: "A space to share interesting ideas, elegant theorems, and curious facts that catch my eye.",
                 curiosityCard1Text: "<em>(Under construction...)</em>",
-                curiosityCard2Text: "<em>(Under construction...)</em>"
+                curiosityCard2Text: "<em>(Under construction...)</em>",
+                seminarsTitle: "Seminars",
+                seminarsP1: "Here we announce the weekly Dynamical Systems seminars at UFMG.",
+                seminar1Title: "Seminar 1 - Rodrigo",
+                seminar1Abstract: "<em>(Under construction...)</em>",
+                seminar2Title: "Seminar 2 - Rodrigo",
+                seminar2Abstract: "<em>(Under construction...)</em>"
             }
         };
 
@@ -331,6 +414,7 @@
             document.getElementById('nav-teaching').innerText = t.navTeaching;
             document.getElementById('nav-research').innerText = t.navResearch;
             document.getElementById('nav-curiosities').innerText = t.navCuriosities;
+            document.getElementById('nav-seminars').innerText = t.navSeminars;
 
             document.getElementById('home-title').innerText = t.homeTitle;
             document.getElementById('home-p1').innerText = t.homeP1;
@@ -349,6 +433,13 @@
             document.getElementById('curiosity-card1-text').innerHTML = t.curiosityCard1Text;
             document.getElementById('curiosity-card2-text').innerHTML = t.curiosityCard2Text;
 
+            document.getElementById('seminars-title').innerText = t.seminarsTitle;
+            document.getElementById('seminars-p1').innerText = t.seminarsP1;
+            document.getElementById('seminar1-title').innerText = t.seminar1Title;
+            document.getElementById('seminar1-abstract').innerHTML = t.seminar1Abstract;
+            document.getElementById('seminar2-title').innerText = t.seminar2Title;
+            document.getElementById('seminar2-abstract').innerHTML = t.seminar2Abstract;
+
             // Foto placeholder alt text
             document.getElementById('profile-img').alt = lang === 'pt' ? '[Foto]' : '[Photo]';
         }
@@ -361,6 +452,22 @@
             fallback.innerText = currentLang === 'pt' ? 'Sua Foto Aqui' : 'Your Photo Here';
             this.parentNode.insertBefore(fallback, this);
         });
+
+        // Accordion Logic
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active-acc");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
 
     </script>
 </body>
