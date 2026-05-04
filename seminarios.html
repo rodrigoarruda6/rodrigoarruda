@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Arruda | Matemática</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <!-- MathJax for LaTeX integration -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #8b0000;
+            --accent-color: #e74c3c;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --light-bg: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .lang-toggle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background-color: var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav button,
+        nav a.tab-link {
+            background: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        nav button:hover,
+        nav a.tab-link:hover {
+            background-color: var(--light-bg);
+            border-color: #ddd;
+        }
+
+        nav button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .profile-container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            border: 3px solid #eee;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .curiosity-card {
+            border-left: 4px solid var(--accent-color);
+            background: var(--light-bg);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        ul.pub-list {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        ul.pub-list li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 26px;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover,
+        .accordion.active-acc {
+            background-color: #ebebeb;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            /* Unicode character for "plus" sign (+) */
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion.active-acc:after {
+            content: "\2212";
+            /* Unicode character for "minus" sign (-) */
+        }
+
+        .panel {
+            padding: 0 15px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="site-title">Seminários de Sistemas Dinâmicos da UFMG</h1>
+        <button class="lang-toggle" onclick="toggleLanguage()" id="btn-lang"><span class="flag-icon flag-icon-us"></span> EN</button>
+    </header>
+
+    <nav>
+        <button class="tab-btn active" onclick="showSection('seminars')" id="nav-seminars">Seminários</button>
+        <button class="tab-btn" onclick="showSection('members')" id="nav-members">Membros</button>
+        <button class="tab-btn" onclick="showSection('research-lines')" id="nav-research-lines">Linhas de Pesquisa</button>
+    </nav>
+
+    <main>
+        <section id="seminars" class="section active">
+            <h2 id="seminars-title">Seminários</h2>
+            <p id="seminars-p1">Aqui são divulgados os seminários semanais de Sistemas Dinâmicos da UFMG.</p>
+
+            <button class="accordion" id="seminar1-title">Seminario 1 - Rodrigo</button>
+            <div class="panel">
+                <p id="seminar1-abstract" style="margin-top: 15px;"><em>(Em construção...)</em></p>
+            </div>
+
+            <button class="accordion" id="seminar2-title">Seminario 2 - Rodrigo</button>
+            <div class="panel">
+                <p id="seminar2-abstract" style="margin-top: 15px;"><em>(Em construção...)</em></p>
+            </div>
+        </section>
+
+        <section id="members" class="section">
+            <h2 id="members-title">Membros</h2>
+            <ul class="pub-list">
+                <li id="members-item1"><em>(Em construção...)</em></li>
+                <li id="members-item2"><em>(Em construção...)</em></li>
+            </ul>
+        </section>
+
+        <section id="research-lines" class="section">
+            <h2 id="research-lines-title">Linhas de Pesquisa</h2>
+            <ul class="pub-list">
+                <li id="research-lines-item1"><em>(Em construção...)</em></li>
+                <li id="research-lines-item2"><em>(Em construção...)</em></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 15px; font-size: 16px; color: var(--primary-color);">
+            <i class="fas fa-university" style="margin-right: 8px;"></i>Universidade Federal de Minas Gerais (UFMG)
+        </div>
+        <div style="margin-bottom: 15px; font-size: 16px; color: var(--primary-color);">
+            <i class="fas fa-envelope" style="margin-right: 8px;"></i>rodrigoarruda6@gmail.com
+        </div>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            document.getElementById('nav-' + sectionId).classList.add('active');
+        }
+
+        // Translation Data
+        const translations = {
+            pt: {
+                langBtn: "<span class='flag-icon flag-icon-us'></span> EN",
+                siteTitle: "Seminários de Sistemas Dinâmicos da UFMG",
+                navSeminars: "Seminários",
+                navMembers: "Membros",
+                navResearchLines: "Linhas de Pesquisa",
+                seminarsTitle: "Seminários",
+                seminarsP1: "Aqui são divulgados os seminários semanais de Sistemas Dinâmicos da UFMG.",
+                seminar1Title: "Seminario 1 - Rodrigo",
+                seminar1Abstract: "<em>(Em construção...)</em>",
+                seminar2Title: "Seminario 2 - Rodrigo",
+                seminar2Abstract: "<em>(Em construção...)</em>",
+                membersTitle: "Membros",
+                membersItem1: "<em>(Em construção...)</em>",
+                membersItem2: "<em>(Em construção...)</em>",
+                researchLinesTitle: "Linhas de Pesquisa",
+                researchLinesItem1: "<em>(Em construção...)</em>",
+                researchLinesItem2: "<em>(Em construção...)</em>"
+            },
+            en: {
+                langBtn: "<span class='flag-icon flag-icon-br'></span> PT",
+                siteTitle: "Dynamical Systems Seminars at UFMG",
+                navSeminars: "Seminars",
+                navMembers: "Members",
+                navResearchLines: "Research Lines",
+                seminarsTitle: "Seminars",
+                seminarsP1: "Here we announce the weekly Dynamical Systems seminars at UFMG.",
+                seminar1Title: "Seminar 1 - Rodrigo",
+                seminar1Abstract: "<em>(Under construction...)</em>",
+                seminar2Title: "Seminar 2 - Rodrigo",
+                seminar2Abstract: "<em>(Under construction...)</em>",
+                membersTitle: "Members",
+                membersItem1: "<em>(Under construction...)</em>",
+                membersItem2: "<em>(Under construction...)</em>",
+                researchLinesTitle: "Research Lines",
+                researchLinesItem1: "<em>(Under construction...)</em>",
+                researchLinesItem2: "<em>(Under construction...)</em>"
+            }
+        };
+
+        let currentLang = 'pt';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            applyTranslations(currentLang);
+        }
+
+        function applyTranslations(lang) {
+            const t = translations[lang];
+
+            document.getElementById('btn-lang').innerHTML = t.langBtn;
+            document.getElementById('site-title').innerText = t.siteTitle;
+
+            document.getElementById('nav-seminars').innerText = t.navSeminars;
+            document.getElementById('nav-members').innerText = t.navMembers;
+            document.getElementById('nav-research-lines').innerText = t.navResearchLines;
+
+            document.getElementById('seminars-title').innerText = t.seminarsTitle;
+            document.getElementById('seminars-p1').innerText = t.seminarsP1;
+            document.getElementById('seminar1-title').innerText = t.seminar1Title;
+            document.getElementById('seminar1-abstract').innerHTML = t.seminar1Abstract;
+            document.getElementById('seminar2-title').innerText = t.seminar2Title;
+            document.getElementById('seminar2-abstract').innerHTML = t.seminar2Abstract;
+
+            document.getElementById('members-title').innerText = t.membersTitle;
+            document.getElementById('members-item1').innerHTML = t.membersItem1;
+            document.getElementById('members-item2').innerHTML = t.membersItem2;
+
+            document.getElementById('research-lines-title').innerText = t.researchLinesTitle;
+            document.getElementById('research-lines-item1').innerHTML = t.researchLinesItem1;
+            document.getElementById('research-lines-item2').innerHTML = t.researchLinesItem2;
+        }
+
+        // Accordion Logic
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active-acc");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
