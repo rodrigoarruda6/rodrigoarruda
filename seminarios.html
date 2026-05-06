@@ -227,7 +227,8 @@
             padding: 0 15px;
             background-color: white;
             max-height: 0;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
             transition: max-height 0.2s ease-out;
             margin-bottom: 15px;
         }
@@ -252,9 +253,9 @@
             <h2 id="seminars-title">Seminários</h2>
             <p id="seminars-p1">Aqui são divulgados os seminários semanais de Sistemas Dinâmicos da UFMG.</p>
 
-            <button class="accordion" id="seminar1-title">Seminario 1 - Rodrigo</button>
+            <button class="accordion" id="seminar1-title">08/05/26 - Rodrigo Arruda: Conjugação Suave e Medidas SRB em Sistemas Hiperbólicos</button>
             <div class="panel">
-                <p id="seminar1-abstract" style="margin-top: 15px;"><em>(Em construção...)</em></p>
+                <p id="seminar1-abstract" style="margin-top: 15px;"><strong>Título:</strong> Conjugação Suave e Medidas SRB em Sistemas Hiperbólicos<br><br><strong>Resumo:</strong> Este seminário apresenta resultados de Rafael de la Llave sobre conjugação suave e medidas SRB em sistemas hiperbólicos, uniformes e não-uniformes. Mostra-se que, em sistemas de Anosov de baixa dimensão, os expoentes de Lyapunov em órbitas periódicas formam invariantes completos para conjugação suave, e que conjugações absolutamente contínuas são tão regulares quanto os sistemas.<br>A abordagem utiliza a estrutura das medidas SRB ao longo das folheações estáveis e instáveis, permitindo extensões ao caso não-uniforme, onde a regularidade vale fora de conjuntos de medida arbitrariamente pequena.</p>
             </div>
 
             <button class="accordion" id="seminar2-title">Seminario 2 - Rodrigo</button>
@@ -309,8 +310,8 @@
                 navResearchLines: "Linhas de Pesquisa",
                 seminarsTitle: "Seminários",
                 seminarsP1: "Aqui são divulgados os seminários semanais de Sistemas Dinâmicos da UFMG.",
-                seminar1Title: "Seminario 1 - Rodrigo",
-                seminar1Abstract: "<em>(Em construção...)</em>",
+                seminar1Title: "08/05/26 - Rodrigo Arruda: Conjugação Suave e Medidas SRB em Sistemas Hiperbólicos",
+                seminar1Abstract: "<strong>Título:</strong> Conjugação Suave e Medidas SRB em Sistemas Hiperbólicos<br><br><strong>Resumo:</strong> Este seminário apresenta resultados de Rafael de la Llave sobre conjugação suave e medidas SRB em sistemas hiperbólicos, uniformes e não-uniformes. Mostra-se que, em sistemas de Anosov de baixa dimensão, os expoentes de Lyapunov em órbitas periódicas formam invariantes completos para conjugação suave, e que conjugações absolutamente contínuas são tão regulares quanto os sistemas.<br>A abordagem utiliza a estrutura das medidas SRB ao longo das folheações estáveis e instáveis, permitindo extensões ao caso não-uniforme, onde a regularidade vale fora de conjuntos de medida arbitrariamente pequena.",
                 seminar2Title: "Seminario 2 - Rodrigo",
                 seminar2Abstract: "<em>(Em construção...)</em>",
                 membersTitle: "Membros",
@@ -328,8 +329,8 @@
                 navResearchLines: "Research Lines",
                 seminarsTitle: "Seminars",
                 seminarsP1: "Here we announce the weekly Dynamical Systems seminars at UFMG.",
-                seminar1Title: "Seminar 1 - Rodrigo",
-                seminar1Abstract: "<em>(Under construction...)</em>",
+                seminar1Title: "May 08, 2026 - Rodrigo Arruda: Smooth Conjugacy and SRB Measures in Hyperbolic Systems",
+                seminar1Abstract: "<strong>Title:</strong> Smooth Conjugacy and SRB Measures in Hyperbolic Systems<br><br><strong>Abstract:</strong> This seminar presents results by Rafael de la Llave on smooth conjugacy and SRB measures in uniform and non-uniform hyperbolic systems. It is shown that, in low-dimensional Anosov systems, the Lyapunov exponents on periodic orbits form complete invariants for smooth conjugacy, and that absolutely continuous conjugacies are as regular as the systems.<br>The approach uses the structure of SRB measures along stable and unstable foliations, allowing extensions to the non-uniform case, where regularity holds outside sets of arbitrarily small measure.",
                 seminar2Title: "Seminar 2 - Rodrigo",
                 seminar2Abstract: "<em>(Under construction...)</em>",
                 membersTitle: "Members",
@@ -385,7 +386,7 @@
                 if (panel.style.maxHeight) {
                     panel.style.maxHeight = null;
                 } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    panel.style.maxHeight = Math.min(panel.scrollHeight, 250) + "px";
                 }
             });
         }
